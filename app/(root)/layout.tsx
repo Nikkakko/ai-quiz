@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className={cn(inter.className, 'antialiased min-h-screen  pt-10')}>
+      <body className={cn(inter.className, 'antialiased min-h-screen  pt-16')}>
         <Providers>
           <Navbar />
           {children}

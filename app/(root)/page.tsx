@@ -1,11 +1,31 @@
-import Image from 'next/image';
+import SignInButton from '@/components/SignInButton';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardTitle,
+} from '@/components/ui/card';
+import { getAuthSession } from '@/lib/nextauth';
+import { redirect } from 'next/navigation';
 
-export default function Home() {
+export default async function Home() {
+  const session = await getAuthSession();
+
+  if (session?.user) {
+    return redirect('/dashboard');
+  }
   return (
-    <main className='flex min-h-screen flex-col items-center justify-between p-24'>
-      <h1 className='text-4xl font-bold text-center'>
-        Welcome to <a href='https://nextjs.org'>Next.js!</a>
-      </h1>
+    <main className='flex items-center justify-center  min-h-screen m-auto container '>
+      <Card className='p-4 flex flex-col gap-4'>
+        <CardTitle>Welcome to Ai-Quiz</CardTitle>
+        <CardDescription className='max-w-md'>
+          Ai-Quiz is a quiz app that uses AI to generate questions and answers.
+          You can also create your own quizzes and share them with your friends.
+        </CardDescription>
+        <CardContent className='p-0 '>
+          <SignInButton text='Sign in with Google' />
+        </CardContent>
+      </Card>
     </main>
   );
 }
