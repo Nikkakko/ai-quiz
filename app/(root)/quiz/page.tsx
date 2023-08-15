@@ -1,7 +1,19 @@
 import React from 'react';
+import { redirect } from 'next/navigation';
+import { getAuthSession } from '@/lib/nextauth';
+import QuizCreation from '@/components/quiz/QuizCreation';
 
-const Quiz = () => {
-  return <div>Quiz</div>;
+export const metadata = {
+  title: 'Quiz | Ai-Quiz',
 };
 
-export default Quiz;
+const QuizPage = async () => {
+  const session = await getAuthSession();
+
+  if (!session?.user) {
+    return redirect('/');
+  }
+  return <QuizCreation />;
+};
+
+export default QuizPage;
