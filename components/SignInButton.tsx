@@ -1,7 +1,7 @@
 'use client';
 import { FC } from 'react';
 import { Button } from './ui/button';
-import { signIn } from 'next-auth/react';
+import { signIn, signOut } from 'next-auth/react';
 
 interface SignInButtonProps {
   text: string;
